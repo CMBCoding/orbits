@@ -5,10 +5,6 @@
 #include <bn_sprite_ptr.h>
 #include <bn_vector.h>
 #include <bn_keypad.h>
-#include "bn_sprite_items_dot.h"
-#include "bn_sprite_items_square.h"
-#include "movement.h"
-#include "center.h"
 #include "orbiter.h"
 
 // A scaling factor by which to reduce the force applied when orbiting
