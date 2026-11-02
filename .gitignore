@@ -48,8 +48,8 @@ build
 
 # GBA compiled files
 *.elf
-*.gba
+# *.gba
 *.sav
 
 # JSON hint for site
-/rom.json
+# /rom.json
