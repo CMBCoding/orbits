@@ -23,11 +23,6 @@ public:
     bn::sprite_ptr get_sprite();
 
     /**
-     * Get the damage sprite.
-     */
-    // bn::sprite_ptr Mothership::get_damage_sprite();
-
-    /**
      * Get the mothership's location.
      */
     bn::fixed_point get_location();

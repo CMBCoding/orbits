@@ -50,17 +50,6 @@ void Orbiter::set_hitbox(bn::rect hitbox)
     _hitbox = hitbox;
 };
 
-/**
- * Create a hit box for the orbiter.
- */
-bn::rect Orbiter::create_orbiter_hitbox(bn::size size)
-{
-    return bn::rect(get_sprite().x().round_integer(),
-                    get_sprite().y().round_integer(),
-                    size.width(),
-                    size.height());
-};
-
 // Creates a constructor of the Orbiter class
 Orbiter::Orbiter(bn::fixed_point starting_location, bn::fixed_point starting_velocity, Center &center) : _sprite(bn::sprite_items::drone.create_sprite(starting_location)),
                                                                                                          _velocity(starting_velocity),

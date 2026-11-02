@@ -1,6 +1,7 @@
 #pragma once
 #include <bn_fixed_point.h>
 #include <bn_sprite_ptr.h>
+#include <bn_rect.h>
 /**
  * A center of mass to be orbited around. Position is controlled by the player.
  */
@@ -30,8 +31,19 @@ public:
      */
     bn::sprite_ptr get_sprite();
 
+     /**
+     * Get the hitbox.
+     */
+    bn::rect get_hitbox();
+
+    /**
+     * Set the hitbox.
+     */
+    void set_hitbox(bn::rect hitbox);
+
 private:
     bn::sprite_ptr _sprite;
     bn::fixed _mass;  // the mass of the center. The larger the value, the greater the attraction
     bn::fixed _speed; // the speed at which the center moves when the d-pad is held
+    bn::rect center_hitbox; //Hitbox of the center
 };

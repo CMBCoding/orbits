@@ -27,21 +27,26 @@ static constexpr bn::fixed_point ORBITER_START_VELOCITY = {0, 5};
 
 // Set the size of the sprites
 static constexpr bn::size ORBITER_SIZE = {16, 16};
+static constexpr bn::size CENTER_SIZE = {32, 32};
 static constexpr bn::size MOTHERSHIP_SIZE = {32, 32};
 
-//Constants for the max sizes in the sprite vectors
-// static constexpr int 
+// Constants for the max sizes in the sprite vectors
+//  static constexpr int
 
 int main()
 {
     bn::core::init();
 
-    //Add background
-    bn::regular_bg_ptr background = bn::regular_bg_items::bg.create_bg(0,0);
+    // Add background
+    bn::regular_bg_ptr background = bn::regular_bg_items::bg.create_bg(0, 0);
 
     Center center = Center({-40, 40}, .05, 2);
+    // Set up the hitbox for the center.
+    bn::rect center_hitbox = create_center_hitbox(center, CENTER_SIZE);
+
     bn::vector<Orbiter, MAX_ORBITERS> orbiters = {};
-    Mothership mothership = Mothership({70, -30}); //Create the mothership
+
+    Mothership mothership = Mothership({70, -30}); // Create the mothership
     // Set up the hitbox for the mothership.
     bn::rect mothership_hitbox = create_mothership_hitbox(mothership, MOTHERSHIP_SIZE);
 
@@ -96,6 +101,9 @@ int main()
         {
             mothership.get_sprite().set_position(300, 300);
         }
+
+        //If the center touchs the mothership
+        if (center.ge)
 
         bn::core::update();
     }

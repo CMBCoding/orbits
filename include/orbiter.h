@@ -39,11 +39,6 @@ public:
      */
     void set_hitbox(bn::rect hitbox);
 
-    /**
-     * Create a hit boxe for the orbiter.
-     */
-    bn::rect create_orbiter_hitbox(bn::size size);
-
 private:
     bn::sprite_ptr _sprite;
     bn::fixed_point _velocity;
