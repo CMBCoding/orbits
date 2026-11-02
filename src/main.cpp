@@ -10,6 +10,7 @@
 #include "mothership.h"
 #include <bn_rect.h>
 #include <bn_log.h>
+#include <bn_sprite_items_mothership_damage.h>
 
 // A scaling factor by which to reduce the force applied when orbiting
 // Important for numerical stability
@@ -33,6 +34,7 @@ int main()
     Center center = Center({30, 40}, .05, 2);
     bn::vector<Orbiter, MAX_ORBITERS> orbiters = {};
     Mothership mothership1 = Mothership({60, 0});
+    bn::sprite_ptr damage_sprite = bn::sprite_items::mothership_damage.create_sprite(300, 300);
     // Set up the hitbox for the mothership.
     bn::rect mothership_hitbox = create_mothership_hitbox(mothership1, MOTHERSHIP_SIZE);
     // Mothership mothership2 = Mothership({0, 60});
@@ -78,6 +80,7 @@ int main()
                     // Pop the orbiter out.
                     orbiters.pop_back();
                     //Show the damage sprite
+                    mothership1.get_sprite().swap(damage_sprite);
                     // mothership1.get_sprite().swap(mothership1.get_sprite(), bn::sprite_ptr)
                     BN_LOG("Orbiter destroyed");
                 }

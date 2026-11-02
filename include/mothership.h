@@ -24,6 +24,11 @@ public:
     bn::sprite_ptr get_sprite();
 
     /**
+     * Get the damage sprite.
+     */
+    // bn::sprite_ptr Mothership::get_damage_sprite();
+
+    /**
      * Get the mothership's location.
      */
     bn::fixed_point get_location();
@@ -42,6 +47,6 @@ public:
 private:
     bn::fixed health_points;    // The ship's hit points
     bn::sprite_ptr ship_sprite; // The ship's graphic
-    bn::sprite_ptr ship_sprite_damage; // The ship's graphic
+    // bn::sprite_ptr ship_sprite_damage; // The ship's graphic
     bn::rect ship_hitbox;
 };

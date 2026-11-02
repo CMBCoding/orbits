@@ -16,6 +16,14 @@ bn::sprite_ptr Mothership::get_sprite()
 };
 
 /**
+ * Get the damage sprite.
+ */
+// bn::sprite_ptr Mothership::get_damage_sprite()
+// {
+//     return ship_sprite_damage;
+// };
+
+/**
  * Get the hitbox.
  */
 bn::rect Mothership::get_hitbox()
@@ -32,5 +40,9 @@ void Mothership::set_hitbox(bn::rect hitbox)
 };
 
 // Create a constructor of the Mothership class
-Mothership::Mothership(bn::fixed_point ship_location) : ship_sprite(bn::sprite_items::mothership.create_sprite(ship_location)),
-                                                        ship_sprite_damage(bn::sprite_items::mothership_damage.create_sprite(300, 300)) {};
+Mothership::Mothership(bn::fixed_point ship_location) : ship_sprite(bn::sprite_items::mothership.create_sprite(ship_location))
+// , ship_sprite_damage(bn::sprite_items::mothership_damage.create_sprite(300, 300)) 
+{
+    
+};
+
