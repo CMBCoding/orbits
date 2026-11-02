@@ -38,9 +38,13 @@ class Orbiter {
          */
         void set_hitbox(bn::rect hitbox);
 
+        bn::rect create_orbiter_hitbox(bn::size size);
+
+
     private:
         bn::sprite_ptr _sprite;
         bn::fixed_point _velocity;
         bn::rect _hitbox;
         Center& _center;
 };
+

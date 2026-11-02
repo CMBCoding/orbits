@@ -29,27 +29,37 @@ void Orbiter::update(bn::fixed FORCE_SCALE)
 /**
  * Get the sprite.
  */
-bn::sprite_ptr Orbiter::get_sprite() {
+bn::sprite_ptr Orbiter::get_sprite()
+{
     return _sprite;
 };
 
 /**
  * Get the hitbox.
  */
-bn::rect Orbiter::get_hitbox() {
+bn::rect Orbiter::get_hitbox()
+{
     return _hitbox;
 };
 
 /**
  * Set the hitbox.
  */
-void Orbiter::set_hitbox(bn::rect hitbox) {
+void Orbiter::set_hitbox(bn::rect hitbox)
+{
     _hitbox = hitbox;
+};
+
+bn::rect Orbiter::create_orbiter_hitbox(bn::size size)
+{
+    return bn::rect(get_sprite().x().round_integer(),
+                    get_sprite().y().round_integer(),
+                    size.width(),
+                    size.height());
 };
 
 // Creates a constructor of the Orbiter class
 Orbiter::Orbiter(bn::fixed_point starting_location, bn::fixed_point starting_velocity, Center &center) : _sprite(bn::sprite_items::drone.create_sprite(starting_location)),
                                                                                                          _velocity(starting_velocity),
-                                                                                                         _center(center)
-{
-}
+                                                                                                         _center(center) {
+                                                                                                         };
