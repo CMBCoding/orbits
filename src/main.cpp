@@ -29,7 +29,6 @@ static constexpr bn::fixed_point ORBITER_START_VELOCITY = {0, 5};
 
 // Set the size of the sprites
 static constexpr bn::size ORBITER_SIZE = {16, 16};
-static constexpr bn::size CENTER_SIZE = {32, 32};
 static constexpr bn::size MOTHERSHIP_SIZE = {32, 32};
 
 int main()
@@ -46,9 +45,11 @@ int main()
     Center center = Center({-40, 40}, .05, 2);
     bn::vector<Orbiter, MAX_ORBITERS> orbiters = {};
 
-    Mothership mothership = Mothership({70, -30}); // Create the mothership
+    // Create the mothership
+    Mothership mothership = Mothership({70, -30}); 
+    //Create a damaged mothership
     bn::sprite_ptr damaged_mothership = bn::sprite_items::mothership_damage.create_sprite(300, 300);
-    // Mothership damaged_mothership = Mothership({300, 300}); //Create a damaged mothership
+    
     // Set up the hitbox for the mothership.
     bn::rect mothership_hitbox = create_mothership_hitbox(mothership, MOTHERSHIP_SIZE);
 
@@ -92,6 +93,7 @@ int main()
                 // And the orbiters vector is not empty...
                 if (orbiters.size() > 0)
                 {
+                    //Active the damage timer
                     damage_timer_active = true;
                     // Pop the orbiter out.
                     orbiters.pop_back();
