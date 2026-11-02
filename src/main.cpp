@@ -10,6 +10,9 @@
 #include "mothership.h"
 #include <bn_rect.h>
 #include <bn_log.h>
+#include <bn_sprite_text_generator.h>
+#include "bn_regular_bg_ptr.h"
+#include "bn_regular_bg_items_bg.h"
 
 // A scaling factor by which to reduce the force applied when orbiting
 // Important for numerical stability
@@ -26,13 +29,19 @@ static constexpr bn::fixed_point ORBITER_START_VELOCITY = {0, 5};
 static constexpr bn::size ORBITER_SIZE = {16, 16};
 static constexpr bn::size MOTHERSHIP_SIZE = {32, 32};
 
+//Constants for the max sizes in the sprite vectors
+// static constexpr int 
+
 int main()
 {
     bn::core::init();
 
-    Center center = Center({30, 40}, .05, 2);
+    //Add background
+    bn::regular_bg_ptr background = bn::regular_bg_items::bg.create_bg(0,0);
+
+    Center center = Center({-40, 40}, .05, 2);
     bn::vector<Orbiter, MAX_ORBITERS> orbiters = {};
-    Mothership mothership = Mothership({60, 0});
+    Mothership mothership = Mothership({70, -30}); //Create the mothership
     // Set up the hitbox for the mothership.
     bn::rect mothership_hitbox = create_mothership_hitbox(mothership, MOTHERSHIP_SIZE);
 
