@@ -13,6 +13,8 @@
 #include <bn_sprite_text_generator.h>
 #include "bn_regular_bg_ptr.h"
 #include "bn_regular_bg_items_bg.h"
+#include "bn_sprite_items_explosion.h"
+#include "bn_regular_bg_items_victorybg.h"
 
 // A scaling factor by which to reduce the force applied when orbiting
 // Important for numerical stability
@@ -41,14 +43,14 @@ int main()
     bn::regular_bg_ptr background = bn::regular_bg_items::bg.create_bg(0, 0);
 
     Center center = Center({-40, 40}, .05, 2);
-    // Set up the hitbox for the center.
-    bn::rect center_hitbox = create_center_hitbox(center, CENTER_SIZE);
-
     bn::vector<Orbiter, MAX_ORBITERS> orbiters = {};
 
     Mothership mothership = Mothership({70, -30}); // Create the mothership
     // Set up the hitbox for the mothership.
     bn::rect mothership_hitbox = create_mothership_hitbox(mothership, MOTHERSHIP_SIZE);
+
+    // Create the explosion sprite
+    bn::sprite_ptr boom = bn::sprite_items::explosion.create_sprite(300, 300);
 
     while (true)
     {
@@ -100,10 +102,9 @@ int main()
         if (mothership.get_health() < 0)
         {
             mothership.get_sprite().set_position(300, 300);
+            boom.set_position(70, -30);
+            background = bn::regular_bg_items::victorybg.create_bg(0, 0);
         }
-
-        //If the center touchs the mothership
-        if (center.ge)
 
         bn::core::update();
     }
