@@ -7,7 +7,8 @@
 #include <bn_keypad.h>
 #include "orbiter.h"
 #include "hitbox.h"
-
+#include <bn_rect.h>
+#include <bn_log.h>
 // A scaling factor by which to reduce the force applied when orbiting
 // Important for numerical stability
 static constexpr bn::fixed FORCE_SCALE = 10;
@@ -44,9 +45,11 @@ int main() {
 
         center.update();
         for(Orbiter& orbiter : orbiters) {
-            create_orbiter_hitbox(orbiter, ORBITER_SIZE);
+            orbiter.set_hitbox(create_orbiter_hitbox(orbiter, ORBITER_SIZE));
             orbiter.update(FORCE_SCALE);
         }
+
+        
 
         bn::core::update();
     }

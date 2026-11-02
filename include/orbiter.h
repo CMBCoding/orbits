@@ -1,6 +1,7 @@
 #pragma once
 #include "center.h"
 #include <bn_sprite_items_drone.h>
+#include <bn_rect.h>
 
 /**
  * An object that orbits around a center. Orbits using Hooke's law, as if attached by a 2D spring.
@@ -27,8 +28,19 @@ class Orbiter {
          */
         bn::sprite_ptr get_sprite();
 
+        /**
+         * Get the hitbox.
+         */
+        bn::rect get_hitbox();
+
+        /**
+         * Set the hitbox.
+         */
+        void set_hitbox(bn::rect hitbox);
+
     private:
         bn::sprite_ptr _sprite;
         bn::fixed_point _velocity;
+        bn::rect _hitbox;
         Center& _center;
 };
