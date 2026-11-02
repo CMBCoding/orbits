@@ -5,8 +5,8 @@ square.json
 square.bmp
 dot.json
 dot.bmp
-mothership_damage.bmp
-mothership_damage.json
+# mothership_damage.bmp
+# mothership_damage.json
 mothership_damage.ase
 explosion.ase
 victory.ase

@@ -10,11 +10,11 @@
 #include "mothership.h"
 #include <bn_rect.h>
 #include <bn_log.h>
-#include <bn_sprite_text_generator.h>
 #include "bn_regular_bg_ptr.h"
 #include "bn_regular_bg_items_bg.h"
 #include "bn_sprite_items_explosion.h"
 #include "bn_regular_bg_items_victorybg.h"
+#include "bn_sprite_items_mothership_damage.h"
 
 // A scaling factor by which to reduce the force applied when orbiting
 // Important for numerical stability
@@ -32,12 +32,13 @@ static constexpr bn::size ORBITER_SIZE = {16, 16};
 static constexpr bn::size CENTER_SIZE = {32, 32};
 static constexpr bn::size MOTHERSHIP_SIZE = {32, 32};
 
-// Constants for the max sizes in the sprite vectors
-//  static constexpr int
-
 int main()
 {
     bn::core::init();
+
+    // Set time for damage sprite display
+    int damage_timer = 0;
+    bool damage_timer_active = false;
 
     // Add background
     bn::regular_bg_ptr background = bn::regular_bg_items::bg.create_bg(0, 0);
@@ -46,6 +47,8 @@ int main()
     bn::vector<Orbiter, MAX_ORBITERS> orbiters = {};
 
     Mothership mothership = Mothership({70, -30}); // Create the mothership
+    bn::sprite_ptr damaged_mothership = bn::sprite_items::mothership_damage.create_sprite(300, 300);
+    // Mothership damaged_mothership = Mothership({300, 300}); //Create a damaged mothership
     // Set up the hitbox for the mothership.
     bn::rect mothership_hitbox = create_mothership_hitbox(mothership, MOTHERSHIP_SIZE);
 
@@ -89,12 +92,27 @@ int main()
                 // And the orbiters vector is not empty...
                 if (orbiters.size() > 0)
                 {
+                    damage_timer_active = true;
                     // Pop the orbiter out.
                     orbiters.pop_back();
                     // Tick down the mothership health
                     mothership.set_health(mothership.get_health() - 1);
                     BN_LOG("Enemy health is", mothership.get_health());
                 }
+            }
+        }
+
+        // If the mothership is hit, show the damage sprite
+        if (damage_timer_active)
+        {
+            // Show the damage sprite
+            damaged_mothership.set_position(70, -30);
+            damage_timer++;
+            if (damage_timer == 10)
+            {
+                damage_timer = 0;
+                damage_timer_active = false;
+                damaged_mothership.set_position(300, 300);
             }
         }
 
