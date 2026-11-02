@@ -22,6 +22,12 @@ class Orbiter {
          */
         void update(bn::fixed FORCE_SCALE);
 
+        /**
+         * Get the sprite.
+         */
+
+        bn::sprite_ptr get_sprite();
+
     private:
         bn::sprite_ptr _sprite;
         bn::fixed_point _velocity;

@@ -6,6 +6,7 @@
 #include <bn_vector.h>
 #include <bn_keypad.h>
 #include "orbiter.h"
+#include "hitbox.h"
 
 // A scaling factor by which to reduce the force applied when orbiting
 // Important for numerical stability
@@ -17,6 +18,8 @@ static constexpr int MAX_ORBITERS = 30;
 // Default starting posiiton and velocity for Orbiter
 static constexpr bn::fixed_point ORBITER_START_POSIITON = {0, 0};
 static constexpr bn::fixed_point ORBITER_START_VELOCITY = {0, 5};
+
+static constexpr bn::size ORBITER_SIZE = {16, 16};
 
 int main() {
     bn::core::init();
@@ -41,6 +44,7 @@ int main() {
 
         center.update();
         for(Orbiter& orbiter : orbiters) {
+            create_orbiter_hitbox(orbiter, ORBITER_SIZE);
             orbiter.update(FORCE_SCALE);
         }
 
