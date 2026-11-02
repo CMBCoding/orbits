@@ -10,6 +10,7 @@
 #include "mothership.h"
 #include <bn_rect.h>
 #include <bn_log.h>
+
 // A scaling factor by which to reduce the force applied when orbiting
 // Important for numerical stability
 static constexpr bn::fixed FORCE_SCALE = 10;
@@ -31,8 +32,6 @@ int main()
 
     Center center = Center({30, 40}, .05, 2);
     bn::vector<Orbiter, MAX_ORBITERS> orbiters = {};
-    // Creator a vector to hold destroyed orbiters
-    bn::vector<Orbiter, MAX_ORBITERS> destroyed_orbiters = {};
     Mothership mothership1 = Mothership({60, 60});
     // Set up the hitbox for the mothership.
     bn::rect mothership_hitbox = create_mothership_hitbox(mothership1, MOTHERSHIP_SIZE);
@@ -62,21 +61,24 @@ int main()
         center.update();
         for (Orbiter &orbiter : orbiters)
         {
+            // For every orbiter in the orbiters list, add a hitbox
             orbiter.set_hitbox(create_orbiter_hitbox(orbiter, ORBITER_SIZE));
             orbiter.update(FORCE_SCALE);
+        }
 
+        // Now that the orbiters have a hitbox...
+        for (Orbiter &orbiter : orbiters)
+        {
+            // If that hitbox touchs the mohership's hitbox...
             if (orbiter.get_hitbox().intersects(mothership_hitbox))
             {
+                // And the orbiters vector is not empty...
                 if (orbiters.size() > 0)
                 {
-                    // destroyed_orbiters.push_back(orbiter);
+                    // Pop the orbiter out.
                     orbiters.pop_back();
                     BN_LOG("Orbiter destroyed");
                 }
-                // else
-                // {
-                //     orbiters.clear();
-                // }
             }
         }
 
