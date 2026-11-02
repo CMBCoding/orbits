@@ -7,6 +7,7 @@
 #include <bn_keypad.h>
 #include "orbiter.h"
 #include "hitbox.h"
+#include "mothership.h"
 #include <bn_rect.h>
 #include <bn_log.h>
 // A scaling factor by which to reduce the force applied when orbiting
@@ -27,6 +28,9 @@ int main() {
 
     Center center = Center({30, 40}, .05, 2);
     bn::vector<Orbiter, MAX_ORBITERS> orbiters = {};
+    Mothership mothership1 = Mothership({60, 60});
+    // Mothership mothership2 = Mothership({0, 60});
+    // Mothership mothership3 = Mothership({10, 40});
     
     while(true) {
         // Add an orbiter when A is pressed if there's room

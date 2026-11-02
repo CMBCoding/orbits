@@ -16,7 +16,6 @@ bn::rect create_orbiter_hitbox(Orbiter orbiter, bn::size size)
                     orbiter.get_sprite().y().round_integer(),
                     size.width(),
                     size.height());
-    BN_LOG("Orbiter Hitbox created");
 };
 
 /**

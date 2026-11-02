@@ -14,6 +14,20 @@ bn::sprite_ptr Mothership::get_sprite()
     return ship_sprite;
 };
 
+/**
+ * Get the hitbox.
+ */
+bn::rect Mothership::get_hitbox() {
+    return ship_hitbox;
+};
+
+/**
+ * Set the hitbox.
+ */
+void Mothership::set_hitbox(bn::rect hitbox) {
+    ship_hitbox = hitbox;
+};
+
 // Create a constructor of the Mothership class
 Mothership::Mothership(bn::fixed_point ship_location) : ship_sprite(bn::sprite_items::mothership.create_sprite(ship_location))
 {
