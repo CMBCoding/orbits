@@ -10,7 +10,6 @@
 #include "mothership.h"
 #include <bn_rect.h>
 #include <bn_log.h>
-#include <bn_sprite_items_mothership_damage.h>
 
 // A scaling factor by which to reduce the force applied when orbiting
 // Important for numerical stability
@@ -33,12 +32,9 @@ int main()
 
     Center center = Center({30, 40}, .05, 2);
     bn::vector<Orbiter, MAX_ORBITERS> orbiters = {};
-    Mothership mothership1 = Mothership({60, 0});
-    bn::sprite_ptr damage_sprite = bn::sprite_items::mothership_damage.create_sprite(300, 300);
+    Mothership mothership = Mothership({60, 0});
     // Set up the hitbox for the mothership.
-    bn::rect mothership_hitbox = create_mothership_hitbox(mothership1, MOTHERSHIP_SIZE);
-    // Mothership mothership2 = Mothership({0, 60});
-    // Mothership mothership3 = Mothership({10, 40});
+    bn::rect mothership_hitbox = create_mothership_hitbox(mothership, MOTHERSHIP_SIZE);
 
     while (true)
     {
@@ -51,7 +47,7 @@ int main()
             }
         }
 
-        //Remove an orbiter when B is pressed if there's at least one
+        // Remove an orbiter when B is pressed if there's at least one
         if (bn::keypad::b_pressed())
         {
             if (orbiters.size() > 0)
@@ -79,12 +75,17 @@ int main()
                 {
                     // Pop the orbiter out.
                     orbiters.pop_back();
-                    //Show the damage sprite
-                    mothership1.get_sprite().swap(damage_sprite);
-                    // mothership1.get_sprite().swap(mothership1.get_sprite(), bn::sprite_ptr)
-                    BN_LOG("Orbiter destroyed");
+                    // Tick down the mothership health
+                    mothership.set_health(mothership.get_health() - 1);
+                    BN_LOG("Enemy health is", mothership.get_health());
                 }
             }
+        }
+
+        // If the mothership's hitpoints hit zero, blow it up (move it off screen)
+        if (mothership.get_health() < 0)
+        {
+            mothership.get_sprite().set_position(300, 300);
         }
 
         bn::core::update();
