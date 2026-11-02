@@ -1,6 +1,6 @@
 #include "orbiter.h"
 #include "center.h"
-#include <bn_sprite_items_dot.h>
+#include <bn_sprite_items_drone.h>
 /**
  * An object that orbits around a center. Orbits using Hooke's law, as if attached by a 2D spring.
  * The stiffness of the spring in each dimension is center.mass() / FORCE_SCALE. 
@@ -26,7 +26,7 @@ void Orbiter::update(bn::fixed FORCE_SCALE) {
 
 //Creates a constructor of the Orbiter class
 Orbiter::Orbiter(bn::fixed_point starting_location, bn::fixed_point starting_velocity, Center &center) :
-    _sprite(bn::sprite_items::dot.create_sprite(starting_location)),
+    _sprite(bn::sprite_items::drone.create_sprite(starting_location)),
     _velocity(starting_velocity),
     _center(center) {
 }

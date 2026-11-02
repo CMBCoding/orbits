@@ -1,6 +1,6 @@
 #include "center.h"
 #include "movement.h"
-#include <bn_sprite_items_square.h>
+#include <bn_sprite_items_ship.h>
 
 bn::fixed_point Center::position() {
     return _sprite.position();
@@ -16,7 +16,7 @@ bn::fixed Center::mass() {
 
 //Creates a constructor of the Center class
 Center::Center(bn::fixed_point starting_position, bn::fixed mass, bn::fixed speed) : 
-            _sprite(bn::sprite_items::square.create_sprite(starting_position)),
+            _sprite(bn::sprite_items::ship.create_sprite(starting_position)),
             _mass(mass),
             _speed(speed) {
 }

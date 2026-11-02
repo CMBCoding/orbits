@@ -1,6 +1,6 @@
 #pragma once
 #include "center.h"
-#include <bn_sprite_items_dot.h>
+#include <bn_sprite_items_drone.h>
 
 /**
  * An object that orbits around a center. Orbits using Hooke's law, as if attached by a 2D spring.
