@@ -25,7 +25,6 @@ class Orbiter {
         /**
          * Get the sprite.
          */
-
         bn::sprite_ptr get_sprite();
 
     private:

@@ -25,6 +25,11 @@ public:
 
     bn::fixed mass();
 
+    /**
+     * Get the sprite.
+     */
+    bn::sprite_ptr get_sprite();
+
 private:
     bn::sprite_ptr _sprite;
     bn::fixed _mass;  // the mass of the center. The larger the value, the greater the attraction
