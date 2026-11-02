@@ -1,5 +1,6 @@
 #pragma once
 #include <bn_sprite_items_mothership.h>
+#include <bn_sprite_items_mothership_damage.h>
 #include <bn_sprite_ptr.h>
 #include <bn_rect.h>
 
@@ -10,32 +11,37 @@
 
 class Mothership
 {
-    public:
-        /**
-         * @param ship_location the starting location of the mothership.
-         */
-        
-        Mothership(bn::fixed_point ship_location);
+public:
+    /**
+     * @param ship_location the starting location of the mothership.
+     */
 
-        /**
-         * Get the sprite.
-         */
-        bn::sprite_ptr get_sprite();
+    Mothership(bn::fixed_point ship_location);
 
-        /**
-         * Get the hitbox.
-         */
-        bn::rect get_hitbox();
+    /**
+     * Get the sprite.
+     */
+    bn::sprite_ptr get_sprite();
 
-        /**
-         * Set the hitbox.
-         */
-        void set_hitbox(bn::rect hitbox);
+    /**
+     * Get the mothership's location.
+     */
+    bn::fixed_point get_location();
+
+    /**
+     * Get the hitbox.
+     */
+    bn::rect get_hitbox();
+
+    /**
+     * Set the hitbox.
+     */
+    void set_hitbox(bn::rect hitbox);
 
 
-    private:
-        bn::fixed health_points; //The ship's hit points
-        bn::sprite_ptr ship_sprite; //The ship's graphic
-        bn::rect ship_hitbox;
-
+private:
+    bn::fixed health_points;    // The ship's hit points
+    bn::sprite_ptr ship_sprite; // The ship's graphic
+    bn::sprite_ptr ship_sprite_damage; // The ship's graphic
+    bn::rect ship_hitbox;
 };

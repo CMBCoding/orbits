@@ -32,7 +32,7 @@ int main()
 
     Center center = Center({30, 40}, .05, 2);
     bn::vector<Orbiter, MAX_ORBITERS> orbiters = {};
-    Mothership mothership1 = Mothership({60, 60});
+    Mothership mothership1 = Mothership({60, 0});
     // Set up the hitbox for the mothership.
     bn::rect mothership_hitbox = create_mothership_hitbox(mothership1, MOTHERSHIP_SIZE);
     // Mothership mothership2 = Mothership({0, 60});
@@ -49,7 +49,7 @@ int main()
             }
         }
 
-        // Remove an orbiter when B is pressed if there's at least one
+        //Remove an orbiter when B is pressed if there's at least one
         if (bn::keypad::b_pressed())
         {
             if (orbiters.size() > 0)
@@ -77,6 +77,8 @@ int main()
                 {
                     // Pop the orbiter out.
                     orbiters.pop_back();
+                    //Show the damage sprite
+                    // mothership1.get_sprite().swap(mothership1.get_sprite(), bn::sprite_ptr)
                     BN_LOG("Orbiter destroyed");
                 }
             }

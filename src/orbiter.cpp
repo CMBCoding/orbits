@@ -50,6 +50,9 @@ void Orbiter::set_hitbox(bn::rect hitbox)
     _hitbox = hitbox;
 };
 
+/**
+ * Create a hit box for the orbiter.
+ */
 bn::rect Orbiter::create_orbiter_hitbox(bn::size size)
 {
     return bn::rect(get_sprite().x().round_integer(),
